@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>User Profile</h1>
+<div class="row">
+    <div class="container">
+        <h3>Hi {{user}}!</h3>
+    </div>
+</div>
+       <div class=" text-center">
+            <a href="/addproduct" type="button" class="btn btn-success text-uppercase btn-lg">Add Product</a>
+            <a href="/deleteproduct" type="button" class="btn btn-success text-uppercase btn-lg">Delete Product</a>
+            <a href="/updateproduct"type="button" class="btn btn-success text-uppercase btn-lg">Update Product</a>
+        </div>
+<div class="order-container">
+        <h2>My Orders </h2>
+            <div class="panel panel--primary">
+ {{# each orders }}
+
+                 <div class="panel-heading">Order :{{inc @key}} </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                     {{# each this.items }}
+                            <li class="list-group-item">
+                                <span class="badge">{{ this.price }}</span>
+                                {{ this.item.title }}  <span class="myspan">-</span> {{ this.qty }}
+                            </li>
+                            <div>   </div>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <strong>Total Price:  ${{this.cart.totalPrice}}</strong>
+                </div>
+  {{/each}}
+
+            </div>
+    </div>
+</div>
+    <div class="row">
+    <div class="col-md-3 col-md-offset-3"><a href="/" type="button" class="btn btn-success pull-right"> Continue Shopping</a></div>
+ </div>
+</div>

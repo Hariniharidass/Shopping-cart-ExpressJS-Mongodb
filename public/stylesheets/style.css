@@ -1,0 +1,77 @@
+
+.name{
+   font-weight: bolder;
+   font-size:30px;
+   color: deeppink!important;
+}
+
+.text{
+ color:deeppink!important;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+}
+
+.btn-color{
+    background-color:rgb(243, 222, 222)!important;
+}
+
+.btn-color:hover{
+        background-color:rgb(247, 188, 188)!important;
+}
+.nav a{
+     color:deeppink!important;
+}
+body{
+    background-color: rgb(243, 222, 222);
+}
+.thumbnail{
+background-color: rgb(243, 222, 222);
+border: 2px solid deeppink;
+}
+.thumbnail img {
+    max-height: 150px;
+
+}
+
+.thumbnail description {
+    color: rgb(7, 7, 7);
+}
+
+.price {
+    font-weight: bold;
+    font-size: 16px
+}
+.btn{
+    background-color: deeppink;
+    color:rgb(243, 222, 222) ;
+    outline: none;
+}
+.btn:hover{
+    background-color: rgb(245, 146, 199);
+    color: firebrick;
+     outline: none;
+}
+.btn:active:focus{
+    background-color: deeppink;
+    color:rgb(243, 222, 222) ;
+    box-shadow: none;
+
+}
+
+.container{
+    outline: none;
+    margin: 30px;
+    padding: 30px;
+}
+.order-container, .panel{
+     outline: none;
+    margin: 30px;
+    padding: 30px;
+     background-color: rgb(243, 222, 222);
+}
+.trash-color{
+    color:white;
+}

@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3 ">
+
+    </div>
+   
+</div>
+
+<div class="row">
+   <h1> {{title}}</h1>
+   <div class="container">
+       <form action="/update" method="post" enctype='multipart/form-data'>
+ 
+
+             <div class="form-group">
+                 <span class="control-fileupload">
+       {{#product}}
+                 <label for="imagePath">Choose a file to upload product image :</label>
+                <input type="file" id="imagePath" name="imagePath" class="form-control">
+                <label for="title">Current path to image</label>
+                <input type="text"  placeholder="{{this.imagePath}}" class="form-control " disabled>
+                 </span>
+            </div>
+            <div class="form-group">
+                 <label for="title">Name</label>
+                <input type="text" id="title" name="title" placeholder="{{this.title}}"class="form-control">
+            </div>
+            
+             <div class="form-group">
+                 <label for="description">description</label>
+                <input type="text" id="description" name="description" placeholder="{{this.description}}" class="form-control">
+            </div>
+           
+            <input type="hidden" name="_id" value="{{this._id}}">
+             <input type="hidden" name="dimagePath" value="{{this.imagePath}}">
+              <input type="hidden" name="dtitle" value="{{this.title}}">
+               <input type="hidden" name="ddescription" value="{{this.description}}">
+                <input type="hidden" name="dprice" value="{{this.price}}">
+             <div class="form-group">
+                 <label for="price">Price</label>
+                <input type="text" id="price" name="price" placeholder="{{this.price}}" class="form-control">
+            </div>
+           {{/product}}
+           
+            <button type="submit" class="btn btn-success pull-right">Update</button>
+         </form>
+   </div>
+</div>

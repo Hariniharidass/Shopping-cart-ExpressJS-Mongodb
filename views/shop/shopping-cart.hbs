@@ -1,0 +1,82 @@
+
+
+{{# if products}}
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+       <tr>
+
+        <th>Name</th>
+        <th>Quantity</th>
+ <th>Price</th>
+
+  <th>Remove item</th>
+
+      </tr>
+    </thead>
+    <tbody>
+         {{# each products}}
+      <tr>
+
+        <td>{{this.item.title}}</td>
+       <td>
+         <a href="/reduce/{{this.item._id}}">
+         <button type="button" class="btn btn-default" aria-label="Left Align">
+<span class="glyphicon glyphicon-minus" aria-hidden="true">
+
+</span>
+</button>
+</a>
+{{ this.qty}}
+<a href="/increase/{{this.item._id}}">
+<button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+</button>
+</a>
+</td>
+        <td>${{ this.price}}</td>
+
+        <td><button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+  <a href="/remove/{{this.item._id}}"><span class="trash-color"><i class="far fa-trash-alt"></i></span></a>
+</button></td>
+      </tr>
+        {{/each}}
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+
+    </div>
+</div>
+<div class="row">
+
+</div>
+</div>
+</div>
+<div class="row">
+     <div class="col-md-3 col-md-offset-3"><h2><strong>Total: {{ totalPrice }}</strong></h2></div>
+    </div>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-body">
+   <div class="col-md-3 col-md-offset-3"><a href="/" type="button" class="btn btn-success pull-right"> Continue Shopping</a></div>
+  <div class="col-md-3 col-md-offset-3"><a href="/checkout" type="button" class="btn btn-success pull-right"> Checkout</a></div>
+
+  </div>
+</div>
+
+{{else}}
+<div class="panel panel-default">
+  <div class="panel-body">
+  <div class="col-md-3 col-md-offset-3"><h2>No Items in Cart</h2></div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-md-offset-3"><a href="/" type="button" class="btn btn-success pull-right"> Continue Shopping</a></div>
+ </div>
+ </div>
+{{/if}}
