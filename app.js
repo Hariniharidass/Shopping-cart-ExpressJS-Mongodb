@@ -3,7 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var expressHbs = require('express-handlebars');
+const { engine: expressHbs } = require('express-handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
@@ -11,7 +12,6 @@ var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
 var multer = require('multer');
-const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
@@ -33,13 +33,13 @@ hbs.registerHelper("inc", function (value, options)
     return parseInt(value) + 1;
 });
 app.engine('.hbs', expressHbs({
-    defaultLayout: 'layout', extname: '.hbs'
+    defaultLayout: 'layout', extname: '.hbs',
+    handlebars: allowInsecurePrototypeAccess(require('handlebars'))
 }));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(validator());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
