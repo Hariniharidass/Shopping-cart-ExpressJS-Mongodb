@@ -17,10 +17,13 @@ var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/shopping', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }, function (err, db)
-{
-    console.log("Connected correctly to server");
-});
+mongoose.connect('mongodb://localhost:27017/shopping')
+    .then(() => {
+        console.log("Connected correctly to server");
+    })
+    .catch(err => {
+        console.error("Error connecting to MongoDB:", err);
+    });
 
 require('./config/passport');
 
@@ -28,8 +31,7 @@ require('./config/passport');
 app.set('views', __dirname + '/views/');
 app.set('view engine', '.hbs');
 var hbs = require('handlebars');
-hbs.registerHelper("inc", function (value, options)
-{
+hbs.registerHelper("inc", function (value, options) {
     return parseInt(value) + 1;
 });
 app.engine('.hbs', expressHbs({
@@ -57,8 +59,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // middleware to check and return true/false based on authentication
 // this result 'login' will be used in views
 // these are global variable to access in views
-app.use(function (req, res, next)
-{
+app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
     res.locals.session = req.session;
     next();
@@ -67,8 +68,7 @@ app.use(function (req, res, next)
 app.use('/user', userRouter);
 app.use('/', indexRouter);
 // catch 404 and forward to error handler
-app.use(function (req, res, next)
-{
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -79,8 +79,7 @@ app.use(function (req, res, next)
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next)
-    {
+    app.use(function (err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -91,8 +90,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res, next)
-{
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
